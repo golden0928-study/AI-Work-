@@ -3,1212 +3,697 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>陳一葦 · 個人作品集</title>
+<title>🚀 AI Prompt 智能寶庫</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700;900&family=Noto+Sans+TC:wght@300;400;500&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
-/* ═══════════════════════════════════════
-   RESET & ROOT
-═══════════════════════════════════════ */
+/* ════════════════════════════════
+   RESET & TOKENS
+════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --ink:        #1a1008;
-  --ink-light:  #3d2b1f;
-  --ink-faint:  #6b5344;
-  --paper:      #f7f3ec;
-  --paper-warm: #f0e9dc;
-  --paper-deep: #e8dfd0;
-  --red:        #c0392b;
-  --red-soft:   #d4504a;
-  --gold:       #b8860b;
-  --gold-light: #d4a017;
-  --border:     rgba(61,43,31,0.15);
-  --shadow:     rgba(26,16,8,0.10);
-
-  --f-serif: 'Noto Serif TC', 'Georgia', serif;
-  --f-sans:  'Noto Sans TC', sans-serif;
+  --bg:           #edf0f7;
+  --surface:      #ffffff;
+  --surface-2:    #f8f9fc;
+  --primary:      #3b82f6;
+  --primary-d:    #2563eb;
+  --primary-glow: rgba(59,130,246,.18);
+  --violet:       #7c3aed;
+  --violet-l:     #a78bfa;
+  --success:      #10b981;
+  --border:       #dde3ef;
+  --text:         #1a2235;
+  --text-2:       #475569;
+  --text-3:       #94a3b8;
+  --shadow-sm:    0 1px 4px rgba(0,0,0,.07);
+  --shadow-md:    0 6px 24px rgba(37,99,235,.11), 0 1px 4px rgba(0,0,0,.06);
+  --r-card:       16px;
+  --r-btn:        10px;
+  --r-pill:       50px;
+  --font:         'Noto Sans TC', sans-serif;
 }
 
 html { scroll-behavior: smooth; }
-
 body {
-  font-family: var(--f-sans);
-  background: var(--paper);
-  color: var(--ink);
-  overflow-x: hidden;
-  line-height: 1.8;
-}
-
-/* ═══════════════════════════════════════
-   NOISE TEXTURE OVERLAY
-═══════════════════════════════════════ */
-body::before {
-  content: '';
-  position: fixed; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.5;
-}
-
-/* ═══════════════════════════════════════
-   NAV
-═══════════════════════════════════════ */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 48px;
-  background: rgba(247,243,236,0.88);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  transition: padding 0.3s;
-}
-nav.scrolled { padding: 12px 48px; }
-
-.nav-logo {
-  font-family: var(--f-serif);
-  font-weight: 900;
-  font-size: 1.15rem;
-  color: var(--ink);
-  text-decoration: none;
-  letter-spacing: 0.1em;
-  display: flex; align-items: center; gap: 10px;
-}
-.nav-logo::before {
-  content: '印';
-  display: flex; align-items: center; justify-content: center;
-  width: 30px; height: 30px;
-  background: var(--red);
-  color: #fff;
-  font-size: 0.85rem;
-  border-radius: 4px;
-  font-weight: 900;
-  letter-spacing: 0;
-}
-
-.nav-links { display: flex; gap: 32px; list-style: none; }
-.nav-links a {
-  font-family: var(--f-serif);
-  font-size: 0.88rem;
-  color: var(--ink-faint);
-  text-decoration: none;
-  letter-spacing: 0.08em;
-  position: relative;
-  transition: color 0.2s;
-}
-.nav-links a::after {
-  content: '';
-  position: absolute; bottom: -3px; left: 0; right: 0;
-  height: 1px; background: var(--red);
-  transform: scaleX(0); transform-origin: left;
-  transition: transform 0.25s;
-}
-.nav-links a:hover { color: var(--ink); }
-.nav-links a:hover::after { transform: scaleX(1); }
-
-/* hamburger (mobile) */
-.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; border: none; background: none; padding: 4px; }
-.hamburger span { display: block; width: 24px; height: 2px; background: var(--ink); border-radius: 2px; transition: all 0.3s; }
-
-/* ═══════════════════════════════════════
-   HERO
-═══════════════════════════════════════ */
-.hero {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
   min-height: 100vh;
-  display: flex; align-items: center;
-  padding: 120px 48px 80px;
-  position: relative;
-  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* large decorative character */
-.hero-kanji {
-  position: absolute;
-  right: -40px; top: 50%;
-  transform: translateY(-50%);
-  font-family: var(--f-serif);
-  font-size: clamp(280px, 28vw, 420px);
-  font-weight: 900;
-  color: var(--paper-deep);
-  line-height: 1;
-  pointer-events: none;
-  user-select: none;
-  letter-spacing: -0.05em;
-}
-
-.hero-content {
-  max-width: 620px;
-  position: relative;
-  z-index: 2;
-}
-
-.hero-eyebrow {
-  font-family: var(--f-serif);
-  font-size: 0.8rem;
-  letter-spacing: 0.3em;
-  color: var(--red);
-  text-transform: uppercase;
-  margin-bottom: 20px;
-  display: flex; align-items: center; gap: 12px;
-  opacity: 0;
-  animation: fadeUp 0.8s 0.2s ease forwards;
-}
-.hero-eyebrow::before {
-  content: '';
-  width: 30px; height: 1px;
-  background: var(--red);
-}
-
-.hero-name {
-  font-family: var(--f-serif);
-  font-size: clamp(3rem, 7vw, 5.5rem);
-  font-weight: 900;
-  line-height: 1.05;
-  color: var(--ink);
-  letter-spacing: -0.02em;
-  margin-bottom: 8px;
-  opacity: 0;
-  animation: fadeUp 0.8s 0.35s ease forwards;
-}
-.hero-name em {
-  font-style: normal;
-  color: var(--red);
-  font-family: 'Playfair Display', serif;
-}
-
-.hero-title {
-  font-family: var(--f-serif);
-  font-size: clamp(1rem, 2.5vw, 1.4rem);
-  font-weight: 300;
-  color: var(--ink-faint);
-  letter-spacing: 0.15em;
-  margin-bottom: 28px;
-  opacity: 0;
-  animation: fadeUp 0.8s 0.5s ease forwards;
-}
-
-.hero-desc {
-  font-size: 0.95rem;
-  color: var(--ink-light);
-  line-height: 2;
-  max-width: 500px;
-  margin-bottom: 40px;
-  opacity: 0;
-  animation: fadeUp 0.8s 0.65s ease forwards;
-}
-
-.hero-actions {
-  display: flex; gap: 16px; flex-wrap: wrap;
-  opacity: 0;
-  animation: fadeUp 0.8s 0.8s ease forwards;
-}
-
-.btn-primary {
-  padding: 13px 32px;
-  background: var(--ink);
-  color: var(--paper);
-  font-family: var(--f-serif);
-  font-size: 0.9rem;
-  letter-spacing: 0.1em;
-  border: 1.5px solid var(--ink);
-  text-decoration: none;
-  border-radius: 2px;
-  transition: background 0.22s, color 0.22s;
-}
-.btn-primary:hover { background: var(--red); border-color: var(--red); }
-
-.btn-ghost {
-  padding: 13px 32px;
-  background: transparent;
-  color: var(--ink);
-  font-family: var(--f-serif);
-  font-size: 0.9rem;
-  letter-spacing: 0.1em;
-  border: 1.5px solid var(--border);
-  text-decoration: none;
-  border-radius: 2px;
-  transition: border-color 0.22s, color 0.22s;
-}
-.btn-ghost:hover { border-color: var(--ink); }
-
-/* seal stamp */
-.hero-seal {
-  position: absolute;
-  bottom: 60px; right: 80px;
-  width: 90px; height: 90px;
-  border: 3px solid var(--red);
-  border-radius: 6px;
-  display: flex; align-items: center; justify-content: center;
-  flex-direction: column;
-  opacity: 0.18;
-  transform: rotate(-12deg);
-  animation: fadeIn 1.2s 1.2s ease forwards;
-}
-.hero-seal span {
-  font-family: var(--f-serif);
-  font-size: 1.4rem;
-  font-weight: 900;
-  color: var(--red);
-  line-height: 1.2;
-  letter-spacing: 0.05em;
-}
-
-/* ═══════════════════════════════════════
-   SECTION COMMON
-═══════════════════════════════════════ */
-section { padding: 96px 48px; }
-section:nth-child(even) { background: var(--paper-warm); }
-
-.section-header {
-  display: flex; align-items: baseline; gap: 20px;
-  margin-bottom: 56px;
-}
-.section-num {
-  font-family: var(--f-serif);
-  font-size: 0.75rem;
-  color: var(--red);
-  letter-spacing: 0.2em;
-  writing-mode: horizontal-tb;
-}
-.section-title {
-  font-family: var(--f-serif);
-  font-size: clamp(1.6rem, 3vw, 2.4rem);
-  font-weight: 900;
-  color: var(--ink);
-  letter-spacing: -0.01em;
-  position: relative;
-}
-.section-title::after {
-  content: '';
-  position: absolute; bottom: -8px; left: 0;
-  width: 40px; height: 3px;
-  background: var(--red);
-  border-radius: 2px;
-}
-.section-sub {
-  font-size: 0.88rem;
-  color: var(--ink-faint);
-  letter-spacing: 0.05em;
-  margin-top: 6px;
-}
-
-.container { max-width: 1100px; margin: 0 auto; }
-
-/* ═══════════════════════════════════════
-   ABOUT
-═══════════════════════════════════════ */
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: 64px;
-  align-items: start;
-}
-
-.about-portrait {
-  position: relative;
-}
-.about-portrait-img {
-  width: 100%;
-  aspect-ratio: 3/4;
-  background: var(--paper-deep);
-  border-radius: 4px;
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--f-serif);
-  font-size: 5rem;
-  color: var(--border);
-  overflow: hidden;
-}
-.about-portrait-img::after {
-  content: '照';
-  font-size: 7rem;
-  color: rgba(61,43,31,0.07);
-  font-weight: 900;
-}
-.about-portrait::before {
-  content: '';
-  position: absolute;
-  top: 14px; left: 14px; right: -14px; bottom: -14px;
-  border: 2px solid var(--paper-deep);
-  border-radius: 4px;
-  z-index: -1;
-}
-
-.about-info { display: flex; flex-direction: column; gap: 28px; }
-.about-text {
-  font-size: 0.96rem;
-  line-height: 2.1;
-  color: var(--ink-light);
-}
-.about-text strong { color: var(--ink); font-weight: 700; }
-
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-top: 8px;
-}
-.skill-item {
-  background: var(--paper);
-  border: 1px solid var(--border);
-  border-radius: 3px;
-  padding: 10px 14px;
-  font-size: 0.82rem;
-  font-family: var(--f-serif);
-  color: var(--ink-light);
+/* ════════════════════════════════
+   HEADER
+════════════════════════════════ */
+.header {
+  background: linear-gradient(170deg, #f5f7ff 0%, var(--bg) 100%);
+  padding: 44px 24px 28px;
   text-align: center;
-  letter-spacing: 0.05em;
-  transition: background 0.2s, border-color 0.2s;
+  border-bottom: 1px solid var(--border);
 }
-.skill-item:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-
-/* ═══════════════════════════════════════
-   PORTFOLIO
-═══════════════════════════════════════ */
-.portfolio-filter {
-  display: flex; gap: 12px; flex-wrap: wrap;
-  margin-bottom: 40px;
-}
-.pf-btn {
-  padding: 6px 18px;
-  border: 1px solid var(--border);
-  background: transparent;
-  font-family: var(--f-serif);
-  font-size: 0.82rem;
-  letter-spacing: 0.1em;
-  color: var(--ink-faint);
-  cursor: pointer;
-  border-radius: 2px;
-  transition: all 0.2s;
-}
-.pf-btn.active, .pf-btn:hover {
-  background: var(--ink);
-  color: var(--paper);
-  border-color: var(--ink);
-}
-
-.portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 24px;
-}
-
-.portfolio-card {
-  background: var(--paper);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s;
-  cursor: pointer;
-}
-.portfolio-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 48px var(--shadow);
-}
-
-.portfolio-thumb {
-  height: 200px;
-  background: var(--paper-deep);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 3rem;
-  color: var(--border);
-  position: relative;
-  overflow: hidden;
-}
-.portfolio-thumb::before {
-  content: attr(data-icon);
-  font-size: 4.5rem;
-  opacity: 0.5;
-  transition: transform 0.4s, opacity 0.4s;
-}
-.portfolio-card:hover .portfolio-thumb::before { transform: scale(1.15); opacity: 0.7; }
-
-.portfolio-tag {
-  position: absolute;
-  top: 12px; right: 12px;
-  background: var(--red);
-  color: #fff;
-  font-size: 0.68rem;
-  font-family: var(--f-serif);
-  letter-spacing: 0.1em;
-  padding: 3px 10px;
-  border-radius: 2px;
-}
-
-.portfolio-body { padding: 20px 22px; }
-.portfolio-title {
-  font-family: var(--f-serif);
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--ink);
-  margin-bottom: 8px;
-}
-.portfolio-desc {
-  font-size: 0.83rem;
-  color: var(--ink-faint);
-  line-height: 1.8;
-}
-.portfolio-meta {
-  display: flex; gap: 8px; flex-wrap: wrap;
-  margin-top: 14px;
-}
-.portfolio-chip {
-  font-size: 0.72rem;
-  padding: 3px 10px;
-  background: var(--paper-warm);
-  color: var(--ink-light);
-  border-radius: 2px;
-  font-family: var(--f-serif);
-  letter-spacing: 0.05em;
-}
-
-/* ═══════════════════════════════════════
-   EXPERIENCE (TIMELINE)
-═══════════════════════════════════════ */
-.timeline { position: relative; padding-left: 32px; }
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 8px; bottom: 8px;
-  width: 1px;
-  background: linear-gradient(to bottom, var(--red), var(--border));
-}
-
-.timeline-item {
-  position: relative;
-  margin-bottom: 48px;
-  padding-left: 32px;
-}
-.timeline-item::before {
-  content: '';
-  position: absolute;
-  left: -36px; top: 8px;
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  background: var(--paper);
-  border: 2px solid var(--red);
-  box-shadow: 0 0 0 4px var(--paper);
-}
-
-.timeline-year {
-  font-family: var(--f-serif);
-  font-size: 0.78rem;
-  letter-spacing: 0.15em;
-  color: var(--red);
+.header h1 {
+  font-size: clamp(1.55rem, 4vw, 2.2rem);
+  font-weight: 900;
+  letter-spacing: -.3px;
+  color: var(--text);
   margin-bottom: 6px;
 }
-.timeline-role {
-  font-family: var(--f-serif);
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--ink);
-  margin-bottom: 4px;
+.sheet-link {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: .82rem; color: var(--primary);
+  text-decoration: none; font-weight: 500;
+  opacity: .8; transition: opacity .2s;
 }
-.timeline-org {
-  font-size: 0.88rem;
-  color: var(--ink-faint);
-  margin-bottom: 10px;
-  font-style: italic;
-}
-.timeline-desc {
-  font-size: 0.88rem;
-  color: var(--ink-light);
-  line-height: 1.9;
-}
+.sheet-link:hover { opacity: 1; text-decoration: underline; }
 
-/* ═══════════════════════════════════════
-   COURSES / TEACHING
-═══════════════════════════════════════ */
-.courses-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 20px;
-}
-.course-card {
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 26px 24px;
-  background: var(--paper);
+/* ── Search ── */
+.search-wrap {
+  max-width: 560px; margin: 22px auto 0;
   position: relative;
-  overflow: hidden;
-  transition: border-color 0.22s, transform 0.22s;
 }
-.course-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--red);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s;
+.search-ico {
+  position: absolute; left: 17px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem; pointer-events: none;
 }
-.course-card:hover { border-color: rgba(192,57,43,0.3); transform: translateY(-4px); }
-.course-card:hover::before { transform: scaleX(1); }
+.search-input {
+  width: 100%; padding: 13px 16px 13px 45px;
+  border: 1.5px solid var(--border); border-radius: var(--r-pill);
+  font-size: .95rem; font-family: var(--font);
+  background: var(--surface); outline: none;
+  box-shadow: var(--shadow-sm); color: var(--text);
+  transition: border-color .2s, box-shadow .2s;
+}
+.search-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--primary-glow);
+}
+.search-input::placeholder { color: var(--text-3); }
 
-.course-icon {
-  font-size: 2rem;
-  margin-bottom: 14px;
-  display: block;
+/* ── Filter Bar ── */
+.filter-bar {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 8px; padding: 20px 24px 0;
+  max-width: 980px; margin: 0 auto;
 }
-.course-title {
-  font-family: var(--f-serif);
-  font-size: 0.98rem;
-  font-weight: 700;
-  color: var(--ink);
-  margin-bottom: 8px;
-  line-height: 1.4;
+.f-btn {
+  padding: 7px 18px; border-radius: var(--r-pill);
+  border: 1.5px solid var(--border); background: var(--surface);
+  font-size: .83rem; font-family: var(--font); font-weight: 600;
+  color: var(--text-2); cursor: pointer; white-space: nowrap;
+  box-shadow: var(--shadow-sm);
+  transition: all .18s;
 }
-.course-desc {
-  font-size: 0.82rem;
-  color: var(--ink-faint);
-  line-height: 1.85;
-}
-.course-students {
-  font-size: 0.75rem;
-  color: var(--red);
-  margin-top: 12px;
-  font-family: var(--f-serif);
-  letter-spacing: 0.05em;
-}
-
-/* ═══════════════════════════════════════
-   WRITING / ARTICLES
-═══════════════════════════════════════ */
-.articles-list { display: flex; flex-direction: column; gap: 0; }
-.article-item {
-  display: grid;
-  grid-template-columns: 90px 1fr auto;
-  align-items: start;
-  gap: 28px;
-  padding: 28px 0;
-  border-bottom: 1px solid var(--border);
-  transition: background 0.2s;
-  text-decoration: none;
-  color: inherit;
-}
-.article-item:first-child { border-top: 1px solid var(--border); }
-.article-item:hover .article-title { color: var(--red); }
-
-.article-date {
-  font-family: var(--f-serif);
-  font-size: 0.78rem;
-  color: var(--ink-faint);
-  letter-spacing: 0.1em;
-  line-height: 1.6;
-  text-align: right;
-  padding-top: 3px;
-}
-.article-title {
-  font-family: var(--f-serif);
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--ink);
-  margin-bottom: 7px;
-  transition: color 0.2s;
-}
-.article-excerpt {
-  font-size: 0.84rem;
-  color: var(--ink-faint);
-  line-height: 1.8;
-}
-.article-tag {
-  font-size: 0.72rem;
-  font-family: var(--f-serif);
-  letter-spacing: 0.08em;
-  color: var(--red);
-  border: 1px solid rgba(192,57,43,0.35);
-  padding: 3px 10px;
-  border-radius: 2px;
-  white-space: nowrap;
-  margin-top: 3px;
+.f-btn:hover { border-color: var(--primary); color: var(--primary); background: #eff6ff; }
+.f-btn.active {
+  background: var(--primary); border-color: var(--primary);
+  color: #fff; box-shadow: 0 3px 12px rgba(37,99,235,.30);
 }
 
-/* ═══════════════════════════════════════
-   CONTACT
-═══════════════════════════════════════ */
-.contact-wrap {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: start;
+/* ════════════════════════════════
+   MAIN / SECTIONS
+════════════════════════════════ */
+.main { max-width: 1280px; margin: 0 auto; padding: 36px 20px 80px; }
+
+.section { margin-bottom: 44px; }
+
+.section-title {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 1.1rem; font-weight: 900;
+  color: var(--text); margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--border);
 }
-.contact-intro {
-  font-family: var(--f-serif);
-  font-size: clamp(1.5rem, 3vw, 2.2rem);
-  font-weight: 700;
-  line-height: 1.5;
-  color: var(--ink);
-  margin-bottom: 24px;
-}
-.contact-intro em { font-style: normal; color: var(--red); }
-.contact-text {
-  font-size: 0.93rem;
-  color: var(--ink-light);
-  line-height: 2.1;
-  margin-bottom: 36px;
-}
-.contact-links { display: flex; flex-direction: column; gap: 16px; }
-.contact-link {
-  display: flex; align-items: center; gap: 14px;
-  text-decoration: none;
-  color: var(--ink-light);
-  font-size: 0.9rem;
-  transition: color 0.2s;
-}
-.contact-link:hover { color: var(--red); }
-.contact-link-icon {
-  width: 38px; height: 38px;
-  border: 1px solid var(--border);
-  border-radius: 3px;
+.type-icon {
+  width: 32px; height: 32px; border-radius: 9px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem;
-  flex-shrink: 0;
-  transition: background 0.2s, border-color 0.2s;
+  font-size: 1rem; flex-shrink: 0;
 }
-.contact-link:hover .contact-link-icon { background: var(--ink); border-color: var(--ink); filter: invert(1); }
+.ti-si  { background: #dbeafe; }   /* AI 協思 */
+.ti-do  { background: #ede9fe; }   /* AI 協做 */
+.ti-ai  { background: #d1fae5; }   /* AI 助理 */
+.ti-def { background: #f1f5f9; }
 
-/* Contact form */
-.contact-form { display: flex; flex-direction: column; gap: 16px; }
-.form-group { display: flex; flex-direction: column; gap: 7px; }
-.form-label {
-  font-family: var(--f-serif);
-  font-size: 0.8rem;
-  letter-spacing: 0.12em;
-  color: var(--ink-faint);
+/* ════════════════════════════════
+   CARD GRID
+════════════════════════════════ */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+  gap: 18px;
 }
-.form-input, .form-textarea {
-  background: var(--paper);
-  border: 1px solid var(--border);
-  border-radius: 3px;
-  padding: 12px 16px;
-  font-family: var(--f-sans);
-  font-size: 0.9rem;
-  color: var(--ink);
-  outline: none;
-  transition: border-color 0.2s;
-  resize: none;
-}
-.form-input:focus, .form-textarea:focus { border-color: var(--red); }
-.form-textarea { height: 130px; }
-.form-submit {
-  padding: 13px;
-  background: var(--ink);
-  color: var(--paper);
-  border: none;
-  font-family: var(--f-serif);
-  font-size: 0.9rem;
-  letter-spacing: 0.12em;
-  cursor: pointer;
-  border-radius: 2px;
-  transition: background 0.22s;
-}
-.form-submit:hover { background: var(--red); }
 
-/* ═══════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════ */
-footer {
-  background: var(--ink);
-  color: var(--paper-warm);
-  padding: 40px 48px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 16px;
+/* ════════════════════════════════
+   CARD
+════════════════════════════════ */
+.card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-sm);
+  display: flex; flex-direction: column;
+  overflow: hidden;
+  transition: transform .22s, box-shadow .22s, border-color .22s;
+  animation: fadeUp .38s ease both;
 }
-.footer-name {
-  font-family: var(--f-serif);
-  font-size: 1rem;
-  letter-spacing: 0.1em;
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(59,130,246,.35);
 }
-.footer-copy {
-  font-size: 0.78rem;
-  color: rgba(240,233,220,0.45);
-  letter-spacing: 0.05em;
-}
-.footer-github {
-  display: flex; align-items: center; gap: 8px;
-  color: var(--paper-warm);
-  text-decoration: none;
-  font-size: 0.85rem;
-  font-family: var(--f-serif);
-  letter-spacing: 0.05em;
-  opacity: 0.65;
-  transition: opacity 0.2s;
-}
-.footer-github:hover { opacity: 1; }
 
-/* ═══════════════════════════════════════
-   SCROLL REVEAL
-═══════════════════════════════════════ */
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+/* gradient top border on hover */
+.card-bar {
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--violet-l));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .25s;
 }
-.reveal.visible { opacity: 1; transform: none; }
+.card:hover .card-bar { transform: scaleX(1); }
 
-/* ═══════════════════════════════════════
-   ANIMATIONS
-═══════════════════════════════════════ */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(22px); }
+.card-body { padding: 16px 18px 12px; flex: 1; display: flex; flex-direction: column; gap: 9px; }
+
+/* category tag */
+.cat-tag {
+  display: inline-flex; align-items: center;
+  font-size: .72rem; font-weight: 700;
+  padding: 3px 11px; border-radius: var(--r-pill);
+  width: fit-content; letter-spacing: .3px;
+}
+/* tag colour map — applied via inline style */
+
+/* title + step row */
+.card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+.card-title { font-size: 1.05rem; font-weight: 900; color: var(--text); line-height: 1.35; }
+
+.step-badge {
+  flex-shrink: 0; min-width: 22px; height: 22px;
+  border-radius: 50%; border: 1.5px solid var(--border);
+  background: var(--surface-2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .68rem; font-weight: 800; color: var(--text-2);
+  margin-top: 2px;
+}
+
+/* content preview */
+.card-content {
+  font-size: .81rem; color: var(--text-2);
+  line-height: 1.72; flex: 1;
+  overflow: hidden; max-height: 118px;
+  position: relative; white-space: pre-wrap;
+}
+.card-content::after {
+  content: ''; position: absolute;
+  bottom: 0; left: 0; right: 0; height: 36px;
+  background: linear-gradient(transparent, var(--surface));
+}
+
+/* copy btn */
+.copy-btn {
+  margin: 0 18px 16px;
+  padding: 10px 0;
+  background: var(--primary); color: #fff;
+  border: none; border-radius: var(--r-btn);
+  font-family: var(--font); font-size: .88rem; font-weight: 700;
+  cursor: pointer; letter-spacing: .3px;
+  transition: background .18s, box-shadow .18s, transform .1s;
+}
+.copy-btn:hover { background: var(--primary-d); box-shadow: 0 4px 14px rgba(37,99,235,.32); }
+.copy-btn:active { transform: scale(.97); }
+.copy-btn.ok { background: var(--success); }
+
+/* ════════════════════════════════
+   MODAL (full prompt)
+════════════════════════════════ */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(15,23,42,.55); backdrop-filter: blur(4px);
+  z-index: 200; align-items: center; justify-content: center; padding: 24px;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--surface); border-radius: 18px;
+  max-width: 640px; width: 100%; max-height: 82vh;
+  display: flex; flex-direction: column;
+  box-shadow: 0 24px 64px rgba(0,0,0,.22);
+  animation: modalIn .24s ease;
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(.94) translateY(12px); }
   to   { opacity: 1; transform: none; }
 }
-@keyframes fadeIn {
-  to { opacity: 0.18; }
+.modal-head {
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+}
+.modal-title { font-size: 1.1rem; font-weight: 900; color: var(--text); }
+.modal-close {
+  width: 30px; height: 30px; border-radius: 50%;
+  border: none; background: var(--surface-2);
+  font-size: 1rem; cursor: pointer; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-2); transition: background .2s;
+}
+.modal-close:hover { background: #fee2e2; color: #e11d48; }
+.modal-content {
+  padding: 20px 24px; overflow-y: auto; flex: 1;
+  font-size: .88rem; color: var(--text-2);
+  line-height: 1.85; white-space: pre-wrap;
+}
+.modal-foot {
+  padding: 14px 24px; border-top: 1px solid var(--border);
+  display: flex; justify-content: flex-end; gap: 10px;
+}
+.modal-copy {
+  padding: 10px 28px;
+  background: var(--primary); color: #fff;
+  border: none; border-radius: var(--r-btn);
+  font-family: var(--font); font-size: .88rem; font-weight: 700;
+  cursor: pointer; transition: background .18s;
+}
+.modal-copy:hover { background: var(--primary-d); }
+.modal-copy.ok { background: var(--success); }
+
+/* ════════════════════════════════
+   LOADING / EMPTY
+════════════════════════════════ */
+.loading { text-align: center; padding: 80px 20px; color: var(--text-3); }
+.spinner {
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 3px solid var(--border); border-top-color: var(--primary);
+  animation: spin .7s linear infinite;
+  margin: 0 auto 16px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.empty { text-align: center; padding: 60px 20px; color: var(--text-3); font-size: 1rem; line-height: 2; }
+.empty a { color: var(--primary); }
+
+/* ════════════════════════════════
+   STATS BAR
+════════════════════════════════ */
+.stats {
+  display: flex; align-items: center; justify-content: center;
+  gap: 28px; flex-wrap: wrap;
+  padding: 14px 24px 0;
+  font-size: .8rem; color: var(--text-3);
+}
+.stats strong { color: var(--primary); font-weight: 700; }
+
+/* ════════════════════════════════
+   ANIMATIONS
+════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
 }
 
-/* ═══════════════════════════════════════
+/* ════════════════════════════════
+   FOOTER
+════════════════════════════════ */
+.footer {
+  text-align: center; padding: 28px;
+  font-size: .78rem; color: var(--text-3);
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+.footer a { color: var(--primary); text-decoration: none; }
+
+/* ════════════════════════════════
    RESPONSIVE
-═══════════════════════════════════════ */
-@media (max-width: 900px) {
-  nav { padding: 16px 24px; }
-  nav.scrolled { padding: 10px 24px; }
-  .nav-links { display: none; }
-  .nav-links.open {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 60px; left: 0; right: 0;
-    background: var(--paper);
-    padding: 24px;
-    border-bottom: 1px solid var(--border);
-    gap: 20px;
-    z-index: 99;
-  }
-  .hamburger { display: flex; }
-
-  section { padding: 64px 24px; }
-  .hero { padding: 100px 24px 60px; }
-  .hero-kanji { font-size: 180px; right: -20px; opacity: 0.5; }
-  .hero-seal { display: none; }
-
-  .about-grid { grid-template-columns: 1fr; gap: 36px; }
-  .about-portrait { max-width: 240px; }
-  .skills-grid { grid-template-columns: repeat(2, 1fr); }
-
-  .contact-wrap { grid-template-columns: 1fr; gap: 40px; }
-  .article-item { grid-template-columns: 1fr; gap: 8px; }
-  .article-date { text-align: left; }
-
-  footer { padding: 32px 24px; }
+════════════════════════════════ */
+@media (max-width: 600px) {
+  .grid { grid-template-columns: 1fr; }
+  .main { padding: 24px 14px 60px; }
+  .header { padding: 32px 16px 22px; }
 }
 </style>
 </head>
 <body>
 
-<!-- ── NAV ── -->
-<nav id="navbar">
-  <a class="nav-logo" href="#">陳一葦</a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#about">關於</a></li>
-    <li><a href="#portfolio">作品集</a></li>
-    <li><a href="#experience">經歷</a></li>
-    <li><a href="#courses">課程</a></li>
-    <li><a href="#writing">文章</a></li>
-    <li><a href="#contact">聯繫</a></li>
-  </ul>
-  <button class="hamburger" id="hamburger" aria-label="選單">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
+<!-- ── HEADER ── -->
+<div class="header">
+  <h1>🚀 AI Prompt 智能寶庫</h1>
+  <a class="sheet-link"
+     href="https://docs.google.com/spreadsheets/d/1oe915g8bLKz0h4rr1Ybb6Am97RHzu0mDYJ2pEHczF4U/edit?usp=sharing"
+     target="_blank" rel="noopener">
+    📊 開啟原始資料 Google Sheet
+  </a>
 
-<!-- ── HERO ── -->
-<section class="hero" id="home">
-  <div class="hero-kanji">作</div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">Portfolio · 作品集</div>
-    <h1 class="hero-name">陳<em>一</em>葦</h1>
-    <div class="hero-title">教學設計師 · AI 應用顧問 · 內容創作者</div>
-    <p class="hero-desc">
-      專注於將複雜知識轉化為有溫度的學習體驗。<br>
-      擅長教學設計、AI 工具整合與數位內容策劃，<br>
-      相信每一個作品都應該說一個值得記住的故事。
-    </p>
-    <div class="hero-actions">
-      <a href="#portfolio" class="btn-primary">查看作品集</a>
-      <a href="#contact" class="btn-ghost">與我合作</a>
-    </div>
+  <!-- Search -->
+  <div class="search-wrap">
+    <span class="search-ico">🔍</span>
+    <input class="search-input" id="searchInput" type="text" placeholder="搜尋提示詞...">
   </div>
-  <div class="hero-seal"><span>一</span><span>葦</span></div>
-</section>
+</div>
 
-<!-- ── ABOUT ── -->
-<section id="about">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="section-num">01</div>
-      <div>
-        <h2 class="section-title">關於我</h2>
-        <p class="section-sub">About · 自我介紹</p>
-      </div>
-    </div>
-    <div class="about-grid">
-      <div class="about-portrait reveal">
-        <div class="about-portrait-img"></div>
-      </div>
-      <div class="about-info reveal" style="transition-delay:0.15s">
-        <p class="about-text">
-          你好，我是 <strong>陳一葦</strong>，一位熱愛教育與科技交會點的設計師。<br><br>
-          過去八年，我在企業教育訓練與數位學習領域深耕，協助超過 <strong>50 間企業</strong> 重新設計知識傳遞的方式。近年聚焦於 <strong>AI 工具整合</strong>，探索如何讓每個人都能以更低的門檻發揮創造力。<br><br>
-          我相信好的設計不只解決問題，更能讓人感受到被理解的溫度。
-        </p>
-        <div>
-          <p style="font-family:var(--f-serif);font-size:0.82rem;letter-spacing:0.15em;color:var(--red);margin-bottom:12px;">專業技能</p>
-          <div class="skills-grid">
-            <div class="skill-item">教學設計</div>
-            <div class="skill-item">AI 提示工程</div>
-            <div class="skill-item">課程開發</div>
-            <div class="skill-item">視覺設計</div>
-            <div class="skill-item">內容寫作</div>
-            <div class="skill-item">專案管理</div>
-            <div class="skill-item">數據分析</div>
-            <div class="skill-item">簡報設計</div>
-            <div class="skill-item">程式應用</div>
-          </div>
-        </div>
-      </div>
-    </div>
+<!-- ── FILTER BAR ── -->
+<div class="filter-bar" id="filterBar">
+  <button class="f-btn active" data-cat="全部">全部</button>
+</div>
+
+<!-- ── STATS ── -->
+<div class="stats" id="statsBar"></div>
+
+<!-- ── MAIN ── -->
+<div class="main">
+  <div id="loading" class="loading">
+    <div class="spinner"></div>
+    <div>載入資料中…</div>
   </div>
-</section>
-
-<!-- ── PORTFOLIO ── -->
-<section id="portfolio">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="section-num">02</div>
-      <div>
-        <h2 class="section-title">作品集</h2>
-        <p class="section-sub">Portfolio · 精選作品</p>
-      </div>
-    </div>
-    <div class="portfolio-filter reveal">
-      <button class="pf-btn active" data-filter="all">全部</button>
-      <button class="pf-btn" data-filter="course">教學課程</button>
-      <button class="pf-btn" data-filter="dev">程式開發</button>
-      <button class="pf-btn" data-filter="design">視覺設計</button>
-      <button class="pf-btn" data-filter="writing">文章寫作</button>
-    </div>
-    <div class="portfolio-grid" id="portfolioGrid">
-
-      <div class="portfolio-card reveal" data-type="course">
-        <div class="portfolio-thumb" data-icon="🎓">
-          <span class="portfolio-tag">教學課程</span>
-        </div>
-        <div class="portfolio-body">
-          <div class="portfolio-title">AI 工具實戰課程設計</div>
-          <p class="portfolio-desc">為企業內訓設計的 AI 工具系列課程，涵蓋 ChatGPT、Midjourney 與自動化工作流程，累計超過 300 名學員完課。</p>
-          <div class="portfolio-meta">
-            <span class="portfolio-chip">教學設計</span>
-            <span class="portfolio-chip">AI 應用</span>
-            <span class="portfolio-chip">企業培訓</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="portfolio-card reveal" data-type="dev" style="transition-delay:0.08s">
-        <div class="portfolio-thumb" data-icon="💻">
-          <span class="portfolio-tag">程式開發</span>
-        </div>
-        <div class="portfolio-body">
-          <div class="portfolio-title">AI Prompt 智能寶庫</div>
-          <p class="portfolio-desc">整合 Google Sheet 資料庫的提示詞管理網站，支援分類篩選與一鍵複製，已幫助數百位創作者提升工作效率。</p>
-          <div class="portfolio-meta">
-            <span class="portfolio-chip">HTML/CSS/JS</span>
-            <span class="portfolio-chip">Google Sheets</span>
-            <span class="portfolio-chip">開源工具</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="portfolio-card reveal" data-type="design" style="transition-delay:0.16s">
-        <div class="portfolio-thumb" data-icon="🎨">
-          <span class="portfolio-tag">視覺設計</span>
-        </div>
-        <div class="portfolio-body">
-          <div class="portfolio-title">企業品牌識別系統</div>
-          <p class="portfolio-desc">為新創教育公司打造完整的品牌識別，包含 Logo、色彩系統、字型規範與應用範本，建立一致的視覺語言。</p>
-          <div class="portfolio-meta">
-            <span class="portfolio-chip">品牌設計</span>
-            <span class="portfolio-chip">Figma</span>
-            <span class="portfolio-chip">視覺系統</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="portfolio-card reveal" data-type="writing" style="transition-delay:0.24s">
-        <div class="portfolio-thumb" data-icon="✍️">
-          <span class="portfolio-tag">文章寫作</span>
-        </div>
-        <div class="portfolio-body">
-          <div class="portfolio-title">《AI 學習週報》電子報</div>
-          <p class="portfolio-desc">每週精選 AI 領域最新動態，以淺顯易懂的方式解析技術趨勢，訂閱人數突破 2,000 人，開信率維持 45% 以上。</p>
-          <div class="portfolio-meta">
-            <span class="portfolio-chip">電子報</span>
-            <span class="portfolio-chip">內容策劃</span>
-            <span class="portfolio-chip">知識傳播</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="portfolio-card reveal" data-type="course" style="transition-delay:0.32s">
-        <div class="portfolio-thumb" data-icon="📊">
-          <span class="portfolio-tag">教學課程</span>
-        </div>
-        <div class="portfolio-body">
-          <div class="portfolio-title">簡報設計思維工作坊</div>
-          <p class="portfolio-desc">以故事結構為核心的簡報設計方法，結合視覺化技巧與說話術，已在 20+ 間企業舉辦實體工作坊。</p>
-          <div class="portfolio-meta">
-            <span class="portfolio-chip">工作坊</span>
-            <span class="portfolio-chip">簡報設計</span>
-            <span class="portfolio-chip">溝通技巧</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="portfolio-card reveal" data-type="dev" style="transition-delay:0.40s">
-        <div class="portfolio-thumb" data-icon="⚡">
-          <span class="portfolio-tag">程式開發</span>
-        </div>
-        <div class="portfolio-body">
-          <div class="portfolio-title">自動化學習報告系統</div>
-          <p class="portfolio-desc">以 Google Apps Script 建立自動化學習追蹤與報告系統，大幅減少行政作業時間，每月節省約 20 小時人工整理工時。</p>
-          <div class="portfolio-meta">
-            <span class="portfolio-chip">Google Apps Script</span>
-            <span class="portfolio-chip">自動化</span>
-            <span class="portfolio-chip">數據報告</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ── EXPERIENCE ── -->
-<section id="experience">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="section-num">03</div>
-      <div>
-        <h2 class="section-title">工作經歷</h2>
-        <p class="section-sub">Experience · 職涯軌跡</p>
-      </div>
-    </div>
-    <div class="timeline">
-      <div class="timeline-item reveal">
-        <div class="timeline-year">2022 — 至今</div>
-        <div class="timeline-role">資深教學設計師 · AI 顧問</div>
-        <div class="timeline-org">某某教育科技股份有限公司</div>
-        <p class="timeline-desc">主導企業 AI 培訓課程開發，建立從需求分析、內容設計到成效評估的完整流程。協助 20+ 間企業導入 AI 工作流程，平均提升團隊生產力 35%。</p>
-      </div>
-      <div class="timeline-item reveal" style="transition-delay:0.1s">
-        <div class="timeline-year">2019 — 2022</div>
-        <div class="timeline-role">數位學習內容設計師</div>
-        <div class="timeline-org">XX 線上學習平台</div>
-        <p class="timeline-desc">負責 50+ 門線上課程的教學設計與腳本撰寫，與講師協作將專業知識轉化為易懂的學習體驗。課程平均評分 4.8/5.0，學員完課率提升 60%。</p>
-      </div>
-      <div class="timeline-item reveal" style="transition-delay:0.2s">
-        <div class="timeline-year">2016 — 2019</div>
-        <div class="timeline-role">教育訓練專員</div>
-        <div class="timeline-org">某大型企業集團人資部門</div>
-        <p class="timeline-desc">規劃與執行集團年度培訓計畫，涵蓋新人訓練、職能發展與管理才能培訓。年度培訓人次超過 800 人，員工滿意度達 92%。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── COURSES ── -->
-<section id="courses">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="section-num">04</div>
-      <div>
-        <h2 class="section-title">開設課程</h2>
-        <p class="section-sub">Courses · 知識傳授</p>
-      </div>
-    </div>
-    <div class="courses-grid">
-      <div class="course-card reveal">
-        <span class="course-icon">🤖</span>
-        <div class="course-title">AI 工具實戰：從零開始到高效應用</div>
-        <p class="course-desc">系統化學習 ChatGPT、Claude、Midjourney 等主流 AI 工具，建立自己的 AI 工作流程。</p>
-        <div class="course-students">👥 已有 320+ 學員完課</div>
-      </div>
-      <div class="course-card reveal" style="transition-delay:0.1s">
-        <span class="course-icon">📝</span>
-        <div class="course-title">Prompt 提示工程精修班</div>
-        <p class="course-desc">深入學習提示詞設計原理，掌握讓 AI 輸出更精準、更有創意的核心技巧。</p>
-        <div class="course-students">👥 已有 180+ 學員完課</div>
-      </div>
-      <div class="course-card reveal" style="transition-delay:0.2s">
-        <span class="course-icon">🎯</span>
-        <div class="course-title">教學設計思維工作坊</div>
-        <p class="course-desc">學習以學習者為中心的課程設計方法，從目標設定到成效評估的完整框架。</p>
-        <div class="course-students">👥 已在 20+ 企業開課</div>
-      </div>
-      <div class="course-card reveal" style="transition-delay:0.3s">
-        <span class="course-icon">📊</span>
-        <div class="course-title">說出影響力：簡報設計與表達</div>
-        <p class="course-desc">結合視覺設計原則與說話技巧，讓你的每一份簡報都能打動人心、清晰傳遞訊息。</p>
-        <div class="course-students">👥 已有 250+ 學員完課</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── WRITING ── -->
-<section id="writing">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="section-num">05</div>
-      <div>
-        <h2 class="section-title">文章寫作</h2>
-        <p class="section-sub">Writing · 思想紀錄</p>
-      </div>
-    </div>
-    <div class="articles-list">
-      <a href="#" class="article-item reveal">
-        <div class="article-date">2025<br>03.15</div>
-        <div>
-          <div class="article-title">用 AI 重新設計你的學習方式：五個讓知識真正留下來的方法</div>
-          <p class="article-excerpt">AI 工具改變的不只是工作，更是我們學習的底層邏輯。這篇文章分享我這一年來用 AI 輔助學習的實踐心得……</p>
-        </div>
-        <span class="article-tag">AI 應用</span>
-      </a>
-      <a href="#" class="article-item reveal" style="transition-delay:0.08s">
-        <div class="article-date">2025<br>02.01</div>
-        <div>
-          <div class="article-title">教學設計師的 Prompt 策略：如何讓 AI 成為你的課程開發夥伴</div>
-          <p class="article-excerpt">身為教學設計師，我每天都在和 AI 協作。這篇文章整理了我最常用的 15 個 Prompt 模板，以及背後的設計邏輯……</p>
-        </div>
-        <span class="article-tag">教學設計</span>
-      </a>
-      <a href="#" class="article-item reveal" style="transition-delay:0.16s">
-        <div class="article-date">2024<br>11.20</div>
-        <div>
-          <div class="article-title">一張紙的力量：為什麼手寫筆記在 AI 時代反而更重要</div>
-          <p class="article-excerpt">當 AI 可以幫我們記下一切，我們反而更需要思考什麼值得記憶。這是一篇關於筆記與思考的反思……</p>
-        </div>
-        <span class="article-tag">學習方法</span>
-      </a>
-      <a href="#" class="article-item reveal" style="transition-delay:0.24s">
-        <div class="article-date">2024<br>09.05</div>
-        <div>
-          <div class="article-title">從「教完」到「學會」：翻轉教學現場的三個關鍵思維轉換</div>
-          <p class="article-excerpt">很多老師都有過這種感受：台上講得汗流浹背，台下卻一臉茫然。問題不在學生，而在設計……</p>
-        </div>
-        <span class="article-tag">教育現場</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ── CONTACT ── -->
-<section id="contact">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="section-num">06</div>
-      <div>
-        <h2 class="section-title">聯繫我</h2>
-        <p class="section-sub">Contact · 歡迎合作</p>
-      </div>
-    </div>
-    <div class="contact-wrap">
-      <div class="reveal">
-        <p class="contact-intro">有個想法想一起<em>實現</em>嗎？</p>
-        <p class="contact-text">無論是課程合作、演講邀約、專案諮詢，或只是想聊聊 AI 與教育的未來，都歡迎你寫信給我。<br><br>我通常在 <strong>48 小時內</strong>回覆。</p>
-        <div class="contact-links">
-          <a href="mailto:hello@example.com" class="contact-link">
-            <div class="contact-link-icon">✉️</div>
-            hello@example.com
-          </a>
-          <a href="https://github.com/username" target="_blank" class="contact-link">
-            <div class="contact-link-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-            </div>
-            github.com/username
-          </a>
-        </div>
-      </div>
-      <div class="reveal" style="transition-delay:0.15s">
-        <div class="contact-form">
-          <div class="form-group">
-            <label class="form-label">姓名</label>
-            <input class="form-input" type="text" placeholder="你的名字">
-          </div>
-          <div class="form-group">
-            <label class="form-label">電子信箱</label>
-            <input class="form-input" type="email" placeholder="your@email.com">
-          </div>
-          <div class="form-group">
-            <label class="form-label">訊息內容</label>
-            <textarea class="form-textarea" placeholder="告訴我你的想法…"></textarea>
-          </div>
-          <button class="form-submit" onclick="handleSubmit(event)">送出訊息</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  <div id="content"></div>
+</div>
 
 <!-- ── FOOTER ── -->
-<footer>
-  <div class="footer-name">陳一葦 · 個人作品集</div>
-  <div class="footer-copy">© 2025 · 以心意設計，以溫度傳遞</div>
-  <a href="https://github.com/username" target="_blank" class="footer-github">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-    GitHub
-  </a>
+<footer class="footer">
+  AI Prompt 智能寶庫 · 資料來源：
+  <a href="https://docs.google.com/spreadsheets/d/1oe915g8bLKz0h4rr1Ybb6Am97RHzu0mDYJ2pEHczF4U/edit?usp=sharing"
+     target="_blank" rel="noopener">Google Sheet</a>
 </footer>
 
+<!-- ── MODAL ── -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <div class="modal-title" id="modalTitle"></div>
+        <div style="font-size:.78rem;color:var(--text-3);margin-top:4px" id="modalMeta"></div>
+      </div>
+      <button class="modal-close" id="modalClose">✕</button>
+    </div>
+    <div class="modal-content" id="modalContent"></div>
+    <div class="modal-foot">
+      <button class="modal-copy" id="modalCopyBtn">複製 Prompt</button>
+    </div>
+  </div>
+</div>
+
 <script>
-/* ── NAV scroll ── */
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 40);
-});
+/* ═══════════════════════════
+   CONFIG — change here only
+═══════════════════════════ */
+const SHEET_ID = '1oe915g8bLKz0h4rr1Ybb6Am97RHzu0mDYJ2pEHczF4U';
+const GID      = '1480282197';
+const CSV_URL  = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${GID}`;
 
-/* ── Hamburger ── */
-const hamburger = document.getElementById('hamburger');
-const navLinks  = document.getElementById('navLinks');
-hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
-navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+/* ═══════════════════════════
+   STATE
+═══════════════════════════ */
+let allData = [];
+let activeCategory = '全部';
+let searchQuery    = '';
 
-/* ── Scroll reveal ── */
-const revealEls = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-}, { threshold: 0.12 });
-revealEls.forEach(el => observer.observe(el));
-
-/* ── Portfolio filter ── */
-document.querySelectorAll('.pf-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.pf-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const filter = btn.dataset.filter;
-    document.querySelectorAll('.portfolio-card').forEach(card => {
-      const show = filter === 'all' || card.dataset.type === filter;
-      card.style.display = show ? '' : 'none';
-    });
-  });
-});
-
-/* ── Contact form ── */
-function handleSubmit(e) {
-  e.preventDefault();
-  const btn = e.target;
-  btn.textContent = '✓ 訊息已送出，謝謝你！';
-  btn.style.background = '#059669';
-  setTimeout(() => { btn.textContent = '送出訊息'; btn.style.background = ''; }, 3000);
+/* ═══════════════════════════
+   CSV PARSER (handles quoted newlines/commas)
+═══════════════════════════ */
+function parseCSV(text) {
+  const rows = [];
+  let row = [], field = '', inQ = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i], n = text[i + 1];
+    if (inQ) {
+      if (c === '"' && n === '"') { field += '"'; i++; }
+      else if (c === '"')          { inQ = false; }
+      else                          { field += c; }
+    } else {
+      if      (c === '"')  { inQ = true; }
+      else if (c === ',')  { row.push(field); field = ''; }
+      else if (c === '\n') { row.push(field); if (row.some(x => x)) rows.push(row); row = []; field = ''; }
+      else if (c === '\r') { /* skip */ }
+      else                  { field += c; }
+    }
+  }
+  if (field !== '' || row.length) { row.push(field); if (row.some(x => x)) rows.push(row); }
+  return rows;
 }
+
+/* ═══════════════════════════
+   FETCH
+═══════════════════════════ */
+async function fetchData() {
+  const res = await fetch(CSV_URL);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const text = await res.text();
+  const rows = parseCSV(text);
+  if (rows.length < 2) return [];
+  // Row 0 = headers: A=Type B=Category C=Title D=流程 E=Content
+  return rows.slice(1).filter(r => (r[2] || '').trim()).map(r => ({
+    type:     (r[0] || '').trim(),
+    category: (r[1] || '').trim(),
+    title:    (r[2] || '').trim(),
+    step:     (r[3] || '').trim(),
+    content:  (r[4] || '').trim(),
+  }));
+}
+
+/* ═══════════════════════════
+   TAG COLOUR MAP
+═══════════════════════════ */
+const TAG = {
+  '內容創作': ['#dbeafe','#1d4ed8'],
+  '程式應用': ['#ede9fe','#5b21b6'],
+  '程式生成': ['#fce7f3','#9d174d'],
+  '簡報表達': ['#d1fae5','#065f46'],
+  '文本優化': ['#ffedd5','#9a3412'],
+  '生文校正': ['#ccfbf1','#115e59'],
+  '專案企劃': ['#fef9c3','#854d0e'],
+  '圖片生成': ['#fce7f3','#86198f'],
+  '筆記整理': ['#e0f2fe','#075985'],
+  '筆記精煉': ['#e0f2fe','#075985'],
+  '資訊整理': ['#f0fdf4','#166534'],
+  '心智圖法': ['#fff7ed','#c2410c'],
+};
+const DEF_TAG = ['#f1f5f9','#475569'];
+
+function tagStyle(cat) {
+  const [bg, fg] = TAG[cat] || DEF_TAG;
+  return `background:${bg};color:${fg}`;
+}
+
+/* ═══════════════════════════
+   TYPE META (section headers)
+═══════════════════════════ */
+const TYPE_META = {
+  'AI 協思': { emoji: '🧠', cls: 'ti-si' },
+  'AI協思':  { emoji: '🧠', cls: 'ti-si' },
+  'AI 協做': { emoji: '🤝', cls: 'ti-do' },
+  'AI協做':  { emoji: '🤝', cls: 'ti-do' },
+  'AI 助理': { emoji: '⚡', cls: 'ti-ai' },
+  'AI助理':  { emoji: '⚡', cls: 'ti-ai' },
+};
+
+/* ═══════════════════════════
+   BUILD FILTER BAR
+═══════════════════════════ */
+function buildFilters() {
+  const cats = ['全部', ...new Set(allData.map(d => d.category).filter(Boolean))];
+  const bar = document.getElementById('filterBar');
+  bar.innerHTML = '';
+  cats.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'f-btn' + (cat === activeCategory ? ' active' : '');
+    btn.dataset.cat = cat;
+    btn.textContent = cat;
+    btn.addEventListener('click', () => {
+      activeCategory = cat;
+      bar.querySelectorAll('.f-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
+      render();
+    });
+    bar.appendChild(btn);
+  });
+}
+
+/* ═══════════════════════════
+   FILTER
+═══════════════════════════ */
+function getFiltered() {
+  const q = searchQuery.trim().toLowerCase();
+  return allData.filter(d => {
+    const matchCat = activeCategory === '全部' || d.category === activeCategory;
+    const matchQ   = !q || [d.title, d.category, d.type, d.content].some(s => s.toLowerCase().includes(q));
+    return matchCat && matchQ;
+  });
+}
+
+/* ═══════════════════════════
+   RENDER
+═══════════════════════════ */
+function render() {
+  const content = document.getElementById('content');
+  const items   = getFiltered();
+  content.innerHTML = '';
+  updateStats(items.length);
+
+  if (!items.length) {
+    content.innerHTML = '<div class="empty">😕 找不到符合的提示詞</div>';
+    return;
+  }
+
+  // Group by Type (col A)
+  const groups = {};
+  items.forEach(d => {
+    const key = d.type || '其他';
+    (groups[key] = groups[key] || []).push(d);
+  });
+
+  let delay = 0;
+  for (const [grp, cards] of Object.entries(groups)) {
+    const meta = TYPE_META[grp] || { emoji: '📌', cls: 'ti-def' };
+
+    const section = document.createElement('div');
+    section.className = 'section';
+
+    // section title
+    const titleEl = document.createElement('div');
+    titleEl.className = 'section-title';
+    titleEl.innerHTML = `<div class="type-icon ${meta.cls}">${meta.emoji}</div>${grp}`;
+    section.appendChild(titleEl);
+
+    const grid = document.createElement('div');
+    grid.className = 'grid';
+    cards.forEach(item => {
+      grid.appendChild(makeCard(item, delay));
+      delay++;
+    });
+    section.appendChild(grid);
+    content.appendChild(section);
+  }
+}
+
+/* ═══════════════════════════
+   MAKE CARD
+═══════════════════════════ */
+function makeCard(item, delay) {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.style.animationDelay = `${Math.min(delay * 38, 500)}ms`;
+
+  // gradient bar
+  const bar = document.createElement('div');
+  bar.className = 'card-bar';
+
+  // body
+  const body = document.createElement('div');
+  body.className = 'card-body';
+
+  // tag
+  const tag = document.createElement('span');
+  tag.className = 'cat-tag';
+  tag.setAttribute('style', tagStyle(item.category));
+  tag.textContent = item.category || '其他';
+
+  // head row (title + step)
+  const head = document.createElement('div');
+  head.className = 'card-head';
+
+  const title = document.createElement('div');
+  title.className = 'card-title';
+  title.textContent = item.title;
+  head.appendChild(title);
+
+  if (item.step) {
+    const badge = document.createElement('div');
+    badge.className = 'step-badge';
+    badge.textContent = item.step;
+    head.appendChild(badge);
+  }
+
+  // content preview
+  const preview = document.createElement('div');
+  preview.className = 'card-content';
+  preview.textContent = item.content;
+
+  body.append(tag, head, preview);
+  card.append(bar, body);
+
+  // copy btn
+  const btn = document.createElement('button');
+  btn.className = 'copy-btn';
+  btn.textContent = '複製 Prompt';
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    copyText(item.content, btn);
+  });
+  card.appendChild(btn);
+
+  // click → open modal
+  card.addEventListener('click', () => openModal(item));
+
+  return card;
+}
+
+/* ═══════════════════════════
+   COPY HELPER
+═══════════════════════════ */
+function copyText(text, btn) {
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = '✅ 已複製！';
+    btn.classList.add('ok');
+    setTimeout(() => { btn.textContent = orig; btn.classList.remove('ok'); }, 1800);
+  });
+}
+
+/* ═══════════════════════════
+   MODAL
+═══════════════════════════ */
+function openModal(item) {
+  document.getElementById('modalTitle').textContent   = item.title;
+  document.getElementById('modalMeta').textContent    = `${item.type}  ·  ${item.category}` + (item.step ? `  ·  流程 ${item.step}` : '');
+  document.getElementById('modalContent').textContent = item.content;
+  const copyBtn = document.getElementById('modalCopyBtn');
+  copyBtn.textContent = '複製 Prompt';
+  copyBtn.classList.remove('ok');
+  copyBtn.onclick = () => copyText(item.content, copyBtn);
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('modalClose').addEventListener('click', closeModal);
+document.getElementById('modalOverlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+/* ═══════════════════════════
+   STATS BAR
+═══════════════════════════ */
+function updateStats(shown) {
+  const bar = document.getElementById('statsBar');
+  bar.innerHTML = `顯示 <strong>${shown}</strong> 筆 ／ 共 <strong>${allData.length}</strong> 筆`;
+}
+
+/* ═══════════════════════════
+   SEARCH
+═══════════════════════════ */
+document.getElementById('searchInput').addEventListener('input', e => {
+  searchQuery = e.target.value;
+  render();
+});
+
+/* ═══════════════════════════
+   BOOT
+═══════════════════════════ */
+(async () => {
+  try {
+    const data = await fetchData();
+    document.getElementById('loading').style.display = 'none';
+    allData = data;
+    buildFilters();
+    render();
+  } catch (err) {
+    document.getElementById('loading').innerHTML = `
+      <div class="empty">
+        ⚠️ 無法載入資料（${err.message}）<br>
+        請確認 Google Sheet 已設為「知道連結的任何人可以檢視」<br><br>
+        <a href="https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit" target="_blank">前往試算表設定</a>
+      </div>`;
+  }
+})();
 </script>
 </body>
 </html>
